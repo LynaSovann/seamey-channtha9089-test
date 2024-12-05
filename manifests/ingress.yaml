@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: seamey-channtha9089-test-https-ingress
+  namespace: seamey-channtha9089-test
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - seamey-channtha9089-test.assessify.org
+      secretName: seamey-channtha9089-test-secret-tls
+  rules:
+    - host: seamey-channtha9089-test.assessify.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: seamey-channtha9089-test-service
+                port:
+                  number: 8340
