@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: seamey-channtha9089-test
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.telegram: "-1002195638358"
+    notifications.argoproj.io/subscribe.on-sync-failed.telegram: "-1002195638358"
+    notifications.argoproj.io/subscribe.on-deleted.telegram: "-1002195638358"
+    notifications.argoproj.io/on-health-degraded.telegram: "-1002195638358"
+    notifications.argoproj.io/subscribe.on-sync-succeeded.updateDeploymentStatusWebhook: ""
+    notifications.argoproj.io/subscribe.on-sync-succeeded.gmail: seameychanntha26@gmail.com
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LynaSovann/seamey-channtha9089-test.git
+    targetRevision: main
+    path: manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: seamey-channtha9089-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 5
