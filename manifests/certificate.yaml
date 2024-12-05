@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: seamey-channtha9089-test-certificate
+  namespace: seamey-channtha9089-test
+spec:
+  secretName: seamey-channtha9089-test-secret-tls
+  commonName: seamey-channtha9089-test.assessify.org
+  dnsNames:
+  - seamey-channtha9089-test.assessify.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
