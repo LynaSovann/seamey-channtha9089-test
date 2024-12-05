@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seamey-channtha9089-test-deployment
+  labels:
+    app: seamey-channtha9089-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seamey-channtha9089-test
+  template:
+    metadata:
+      labels:
+        app: seamey-channtha9089-test
+    spec:
+      containers:
+        - name: seamey-channtha9089-test-container
+          image: pipejet/seamey-channtha9089-test:0
+          ports:
+            - containerPort: 3000
